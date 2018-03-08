@@ -7,8 +7,6 @@ public class Student{
   private double gpa;
   private String major;
   
-  
-  
   //zero-argument default constructor
   public Student(){
     this.gpa = 0.0;
