@@ -7,7 +7,7 @@
   printout statements.
   */
  
-public class TestPrint{
+public class Lab01{
   
   //main method, where the application starts.
   public static void main(String[]args){
