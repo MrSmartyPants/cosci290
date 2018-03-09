@@ -1,4 +1,4 @@
-/*
+  /*
   Author: Sina Tuy
   This class is the student object used for my text adventure.
 */
