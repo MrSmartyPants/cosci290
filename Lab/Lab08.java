@@ -50,7 +50,7 @@ public class Lab08{
     printStudents(students);
     
     //method-call to find a specific object 
-    System.out.println(findMajor(students, major));
+    System.out.println(findMajor(students, "Computer Science"));
                                          
  } //end of main-method
   
