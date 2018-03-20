@@ -1,12 +1,21 @@
-/* 
-  Giovanni Pernudi
-  Co Sci 290
+Giovanni Pernudi
+Co Sci 290
   
-  Text file containing a list of object that will  be used for 
-  text-based adevnture game.
-*/
+Text file containing a list of object that will  be used for 
+text-based adventure game as well as a summary of the game itself.
 
-/*
+Summary
+  "Kathy" is dating simulation text-adventure game. The main character (You) try
+  to win the heart of a girl named Kathy. You have many utilities at your 
+  disposal to accomplish this. You can purchase gifts and give them to Kathy to
+  win her over. Decide where you wish to take her on a romantic date.
+  Get jobs and promotions to cover the expense of all this. Plan your day accordingly 
+  to pursue hobbies and skills for increased stats. Make the right choices 
+  before the year ends and see if you win her over. Be careful, she might not be 
+  as pleasent as you make her out to be. 
+ 
+
+Objects Used
   - Gifts (Classes)
     -Jewelery (Objects)
     -Flowers 
