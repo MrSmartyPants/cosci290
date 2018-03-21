@@ -15,7 +15,7 @@
 */
 
 //import Scanner from class to use for user input.
-import java.util.Scanner;
+import java.util.*;
 
 public class GameDriver {
   //entry point of the application
@@ -43,11 +43,11 @@ public class GameDriver {
     
     //declare variables to set up the random number generator.declare
     int randomNumber = 0;
-    int minimum = 1; //set min for range for random numbers
-    int maximum = 3; //set max for range for random numbers
+    int minimum; //set min for range for random numbers
+    int maximum; //set max for range for random numbers
    
     //method call to use the random number genetor and store the new random number in a variable.
-    randomNumber = useRandomNumberGenerator(minimum, maximum);
+    randomNumber = useRandomNumberGenerator(1, 3);
     
     //method call to display a random encounter to Kathy for the user.
     displayRandomEncounter(randomNumber);
@@ -69,12 +69,10 @@ public class GameDriver {
     favoriteNumber = input.nextInt();
     
     System.out.println(yourName + ": What about you?\n");
-    
-    //change the value for maximum to update number generator
-    maximum = 100;
+
     
     //generate a random number for Kathy
-    kathyNumber = useRandomNumberGenerator(minimum, maximum);
+    kathyNumber = useRandomNumberGenerator(1, 100);
     
     //comparison operator to compare Kathy's number with yours
     if(favoriteNumber == kathyNumber) {
@@ -129,7 +127,63 @@ public class GameDriver {
     
    
     //method call to display Game-Over Screen
-   displayGameOverScreen();
+    displayGameOverScreen();
+    
+    //instantiate ArrayList of int objects
+    ArrayList<Gift> gifts = new ArrayList<Gift>();
+    
+    //instantiate each Gift object
+    Gift g1 = new Gift();
+    Gift g2 = new Gift();
+    Gift g3 = new Gift();
+    Gift g4 = new Gift();
+    Gift g5 = new Gift();
+    
+    //add student objects to ArrayList
+    gifts.add(g1);
+    gifts.add(g2);
+    gifts.add(g3);
+    gifts.add(g4);
+    gifts.add(g5);
+    
+    //Setting properties for each student object
+    g1.setName("Flowers");
+    g2.setName("Chocolates");
+    g3.setName("Teddy Bear");
+    g4.setName("Jewelry");
+    g5.setName("Diamond Ring");
+    
+    g1.setType("Plant");
+    g2.setType("Food");
+    g3.setType("Toy");
+    g4.setType("Accessory");
+    g5.setType("Accessory");
+    
+    //set-up the random number generator and use it for the method to assign a value.
+    g1.setPrice(useRandomNumberGenerator(10, 15));
+    
+    //Use the random number generator again to get a new value with the updated number range.
+    g2.setPrice(useRandomNumberGenerator(10, 20));
+    
+    g3.setPrice(useRandomNumberGenerator(10, 25));
+    
+    g4.setPrice(useRandomNumberGenerator(25, 40));
+    
+    g5.setPrice(useRandomNumberGenerator(40, 99));
+    
+    g1.setRomancePoints(useRandomNumberGenerator(1, 2));
+    
+    g2.setRomancePoints(useRandomNumberGenerator(1, 5));
+    
+    g3.setRomancePoints(useRandomNumberGenerator(5, 10));
+    
+    g4.setRomancePoints(useRandomNumberGenerator(10, 25));
+
+    g5.setRomancePoints(useRandomNumberGenerator(25, 100));
+    
+    //printing information of each gift after setting properties
+    for(int i = 0; i < gifts.size(); i++)
+      System.out.println(gifts.get(i));
     
   } //end of main-method
   

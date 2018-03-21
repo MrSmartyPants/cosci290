@@ -86,7 +86,7 @@ public class Lab07 {
     g5.setRomancePoints(minimum + (int)(Math.random() * ((maximum - minimum) + 1)));
     
     //printing information of each gift after setting properties
-    for(int i = 0; i < gifts.length; i++)
+    for(int i = 0; i < gifts.size(); i++)
       System.out.println(gifts[i].toString());
     
   }
