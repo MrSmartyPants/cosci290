@@ -18,7 +18,7 @@ import java.util.Scanner;
      //method call to display the description of the program to the user. 
      description();
      
-     //declaring a varaible that stores the size of the array and a flag to 
+     //declaring a varaible that stores the size of the array and a flag to check if the array is sorted or not.
      int numberSize = 0; 
      boolean flag = false;
      
@@ -85,6 +85,8 @@ import java.util.Scanner;
      for (int i = 0; i < numberSize; i++) {
        System.out.print(numbers[i] + " "); 
      }
+     
+     System.out.print("\n");
    }
    
    //this method will check if the list is in nondecreasing order and return true or false
