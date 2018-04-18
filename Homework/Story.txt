@@ -1,0 +1,65 @@
+Scene1
+
+Greetings brave soul. You are about to undertake the most
+difficult quest known to man, "dating". Our story begins with you,
+our protagonist, walking to school as any ordinary day. You quickly 
+make it to the high school and your first class. As the class starts, the teacher makes an
+announcement, a new student will be attending the class. The new student walks in and you
+can't believe it, the most beautiful girl you have ever seen. She says "Hello. I'm Kathy"
+and so your quest to win Kathy's heart begins
+
+Kathy was asked to take the empty seat next to you. Despite your
+paralysis due to her beauty, you've managed to muster up the courage to say
+something to her.
+
+endScene1
+
+Scene2
+
+Narrator: You've decided to introduce yourself to Kathy.
+You: My name is: 
+
+endScene2
+
+Scene3
+
+Please to meet you.
+Kathy: The feeling is mutual.
+Narrator: You decided to ask Kathy about herself.
+
+endScene3
+
+Scene4
+
+Kathy: Okay. My turn.
+Kathy: How old are you?
+
+endScene4
+
+Scene5
+
+years old
+
+endScene5
+
+Scene6
+
+Kathy: You seem to be a lot taller than how you're sitting
+How tall are you?
+
+endScene6
+
+Scene7
+
+Narrator: Enter in your height in feet and then inches, separated by a space or hitting enter.
+
+endScene7
+
+Scene8
+
+Kathy: I happen to be 5"4'
+
+Teacher: Alright everyone. Take out your books and turn to
+page 394.
+
+endScene8

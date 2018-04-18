@@ -23,12 +23,15 @@ public class GameDriver {
     
     //assign System.in to variable to get input from user.
     Scanner input = new Scanner(System.in);
+    //calling a class that you made, giving a varaible and instantiating in memory to use it.
+    //constructor.
+    Utility tool = new Utility();
   
     //method call to display the splash screen of the text-based adventure to user.
-    displaySplashScreen();
+    tool.readFile("SplashScreens.txt", "Beginning Splash Screen", "}");
     
     //method call to display the background story of the game to the user.
-    displayBackstory();
+    tool.readFile("Story.txt", "Scene1", "endScene1");
     
     //declare variable of String type for player's name.                 
     String yourName;
@@ -50,19 +53,16 @@ public class GameDriver {
     randomNumber = useRandomNumberGenerator(1, 3);
     
     //method call to display a random encounter to Kathy for the user.
-    displayRandomEncounter(randomNumber);
-    
-    System.out.print("Narrator: You've decided to introduce yourself to Kathy.\n"
-                    + "You: My name is: ");
+    displayRandomEncounter(randomNumber); 
     
     //get user input for their name.
+    tool.readFile("Story.txt", "Scene2", "endScene2");
+    
     yourName = input.next();
     
-    System.out.print("Please to meet you.\n"
-                    + "Kathy: The feeling is mutual.\n");
+    tool.readFile("Story.txt", "Scene3", "endScene3");
     
-    System.out.println("Narrator: You decided to ask Kathy about herself.\n"
-                       + yourName + ": My favorite number is ");
+    System.out.println(yourName + ": My favorite number is ");
     
     //get user input for favoriteNumber
     
@@ -75,24 +75,16 @@ public class GameDriver {
     kathyNumber = useRandomNumberGenerator(1, 100);
     
     //comparison operator to compare Kathy's number with yours
-    if(favoriteNumber == kathyNumber) {
-       System.out.println("Kathy: Oh wow! That's my favorite number too!\n"
-                         + "This is amazing!\n");
-      affectionPoints = affectionPoints + 7; //add affection points to total
-    }
-    else {
-      System.out.println("That's cool. My favorite number is " + kathyNumber + "\n");
-    }
+    possibleRoute(favoriteNumber, kathyNumber, affectionPoints, yourName);
     
     //prompt the user to enter in their age
+    tool.readFile("Story.txt", "Scene4", "endScene4");
     
-    System.out.print("Kathy: Okay. My turn.\n"
-              + "Kathy: How old are you?\n"
-              + yourName + ": I am ");
+    System.out.print(yourName + ": I am ");
     
     yourAge = input.nextInt();
-    
-    System.out.print(" years old\n");
+    //finish dialogue taken from the file. 
+    tool.readFile("Story.txt", "Scene5", "endScene5");
     
     //method call to create different paths for age response.
     ageScenario(yourAge, yourName, affectionPoints);
@@ -102,32 +94,30 @@ public class GameDriver {
      }
     
     //prompt the user to enter in their age
-    System.out.println("Kathy: You seem to be a lot taller than how you're sitting\n"
-                      + "Kathy: How tall are you?\n"
-                      + yourName + ": I happen to be\n"
-                    + "Narrator: Enter in your height in feet and then inches, separated by a space or hitting enter.\n");
+    tool.readFile("Story.txt", "Scene6", "endScene6");
+    System.out.println(yourName + ": I happen to be\n");
+    tool.readFile("Story.txt", "Scene7", "endScene7");
     
+    //get first number entered  by the user
     heightFeet = input.nextInt();
+    //get second number entered by the user.
     heightInches = input.nextInt();
     System.out.print(heightFeet + "'" + heightInches + "\"\n");
     
+    //convert to inches from feet to inches.
     totalHeight = ((heightFeet * 12) + heightInches);
     
     //method call to create multiple paths for height.
     heightPaths(totalHeight, yourName, affectionPoints);
    
-    System.out.println("Kathy: I happen to be 5\"4'");
-    
-    
-    System.out.println("Teacher: Alright everyone. Take out your books and turn to\n"
-                      + "page 394.\n");
+    tool.readFile("Story.txt", "Scene8", "endScene8");
     
     //create pathways for endings, use affection points to see how well the user did.
     displayEnding(affectionPoints, yourName);
     
    
     //method call to display Game-Over Screen
-    displayGameOverScreen();
+    tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "endgame");
     
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
@@ -186,34 +176,7 @@ public class GameDriver {
       System.out.println(gifts.get(i));
     
   } //end of main-method
-  
-  //method to display Spalsh Screen of Text-Based Adventure Game
-  public static void displaySplashScreen() {
-      System.out.println(" _  __     _   _ \n"          
-                    + "| |/ /    | | | |\n"         
-                    + "| ' / __ _| |_| |__  _   _\n"
-                    + "|  < / _` | __| '_ \\| | | |\n"
-                    + "| . \\ (_| | |_| | | | |_| |\n"
-                    + "|_|\\_\\__,_|\\__|_| |_|\\__, |\n"
-                   +  "                     __/ |\n"
-                   +  "                    |___/ \n");
-  }
-  
-  //method to display the background story of the text-based adventure game to user.
-  public static void displayBackstory() {
-        System.out.println("Greetings brave soul. You are about to undertake the most\n"
-                      + "difficult quest known to man, \"dating\". Our story begins with you,\n"
-                      + "our protagonist, walking to school as any ordinary day. You quickly\n" 
-                      + "make it to the high school and your first class. As the class starts, the teacher makes an\n"
-                      + "announcement, a new student will be attending the class. The new student walks in and you\n"
-                      + "can't believe it, the most beautiful girl you have ever seen. She says \"Hello. I'm Kathy\"\n"
-                      + "and so your quest to win Kathy's heart begins.\n\n");
-    
-        System.out.println("Kathy was asked to take the empty seat next to you. Despite your\n"
-                      + "paralysis due to her beauty, you've managed to muster up the courage to say\n"
-                      + "something to her\n\n");
-  }
-  
+     
   //method to use the random number generator and get a new random number. 
   public static int useRandomNumberGenerator(int minimum, int maximum) {
     return minimum + (int)(Math.random() * maximum);
@@ -236,6 +199,17 @@ public class GameDriver {
        System.out.println("You: Lovely day we're having aren't we?\n"
                           + "Kathy: I agree! What a wonderful day to be starting my new school!\n\n");
      }     
+  }
+  
+  public static void possibleRoute(int favoriteNumber, int kathyNumber, int affectionPoints, String yourName) {
+      if(favoriteNumber == kathyNumber) {
+       System.out.println("Kathy: Oh wow! That's my favorite number too!\n"
+                         + "This is amazing!\n");
+      affectionPoints = affectionPoints + 7; //add affection points to total
+    }
+    else {
+      System.out.println(yourName + ":That's cool. My favorite number is " + kathyNumber + "\n");
+    }
   }
   
   //method to create scenarios for age question response.
@@ -301,13 +275,4 @@ public class GameDriver {
     }
   }
   
-  //method to display the game-over screen to user
-  public static void displayGameOverScreen() {
-        System.out.println("     _____                         ____                 _\n"
-                     + "   / ____|                       / __ \\               | |\n"
-                     + "  | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __| |\n"
-                     + "  | | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__| |\n"
-                     + "  | |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |  |_|\n"
-                     + "   \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|  (_)");
-  }
 }
