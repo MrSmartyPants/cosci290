@@ -73,7 +73,6 @@ public class GameDriver {
     //get user input for favoriteNumber
     
     favoriteNumber = input.nextInt();
-    
     System.out.println(yourName + ": What about you?\n");
 
     
