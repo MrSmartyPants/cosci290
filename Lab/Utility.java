@@ -10,8 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 //When errors happens, your programs won't crash/
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Utility {
   
@@ -40,23 +38,6 @@ public class Utility {
       
     //if there is no file to read to open the exception will be caught 
       e.printStackTrace();
-    }
-  }
-  
-  //this custom method will store content to write into a file. 
-  //the first formal argument is the name of the file. 
-  //the second formal argument is the stored message that the user has entered 
-  //to be stored into a file. 
-   public void writeFile(String filename, String content) {
-      
-      try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
-
-			bw.write(content);
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
     }
   }
 }

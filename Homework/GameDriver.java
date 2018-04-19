@@ -44,6 +44,10 @@ public class GameDriver {
     int affectionPoints = 0; //points that will determine different paths and endings either if the
     //date is going well or poorly. 
     
+    //This string varaible will store what a user wants to input into a file.
+    String content;
+    int information;
+    
     //declare variables to set up the random number generator.declare
     int randomNumber = 0;
     int minimum; //set min for range for random numbers
@@ -58,7 +62,9 @@ public class GameDriver {
     //get user input for their name.
     tool.readFile("Story.txt", "Scene2", "endScene2");
     
-    yourName = input.next();
+    content = input.next();
+    yourName = content;
+    tool.writeFile("testWriting.txt", content);
     
     tool.readFile("Story.txt", "Scene3", "endScene3");
     
