@@ -60,18 +60,5 @@ public class Utility {
 
     }
   }
-  
-  public void writeNumber(String filename, int information) {
-    
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
-
-			bw.write(information);
-        bw.write("\n");
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-    }
-  }
+ 
 }
