@@ -126,6 +126,11 @@ public class GameDriver {
     
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
+    ArrayList<ArrayList><GameDriverMap>> map = new ArrayList<ArrayList<GameDriverMap>>();
+    ArrayList<GameDriverMap> a1 = new ArrayList<GameDriverMap>();
+    ArrayList<GameDriverMap> a2 = new ArrayList<GameDriverMap>();
+    ArrayList<GameDriverMap> a3 = new ArrayList<GameDriverMap>();
+    
     
     //instantiate each Gift object
     Gift g1 = new Gift();
