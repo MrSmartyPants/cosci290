@@ -26,164 +26,183 @@ public class GameDriver {
     //calling a class that you made, giving a varaible and instantiating in memory to use it.
     //constructor.
     Utility tool = new Utility();
-  
+
     //method call to display the splash screen of the text-based adventure to user.
     tool.readFile("SplashScreens.txt", "Beginning Splash Screen", "}");
-    
+
     //method call to display the background story of the game to the user.
     tool.readFile("Story.txt", "Scene1", "endScene1");
-    
-    //declare variable of String type for player's name.                 
+
+    //declare variable of String type for player's name.      
+
     String yourName;
     int favoriteNumber;
     int kathyNumber;
     int heightFeet;
     int heightInches;
-    int yourAge;
+    int yourAge = 18;
     int totalHeight; //will be converted to inches. 
     int affectionPoints = 0; //points that will determine different paths and endings either if the
     //date is going well or poorly. 
-    
+
     //This string varaible will store what a user wants to input into a file.
-    String content;
+    String content = "";
     int information;
-    
+
     //declare variables to set up the random number generator.declare
     int randomNumber = 0;
     int minimum; //set min for range for random numbers
     int maximum; //set max for range for random numbers
-   
+
     //method call to use the random number genetor and store the new random number in a variable.
     randomNumber = useRandomNumberGenerator(1, 3);
-    
+
     //method call to display a random encounter to Kathy for the user.
     displayRandomEncounter(randomNumber); 
-    
+
     //get user input for their name.
     tool.readFile("Story.txt", "Scene2", "endScene2");
     
+    System.out.println("Please enter in your name: ");
+    
     content = input.next();
+    
     yourName = content;
     tool.writeFile("testWriting.txt", content);
-    
+
     tool.readFile("Story.txt", "Scene3", "endScene3");
-    
+
     System.out.println(yourName + ": My favorite number is ");
-    
+
     //get user input for favoriteNumber
-    
+
     favoriteNumber = input.nextInt();
     System.out.println(yourName + ": What about you?\n");
 
-    
+
     //generate a random number for Kathy
     kathyNumber = useRandomNumberGenerator(1, 100);
-    
+
     //comparison operator to compare Kathy's number with yours
     possibleRoute(favoriteNumber, kathyNumber, affectionPoints, yourName);
-    
+
     //prompt the user to enter in their age
     tool.readFile("Story.txt", "Scene4", "endScene4");
-    
+
     System.out.print(yourName + ": I am ");
     
-    yourAge = input.nextInt();
+    boolean continueInput = true;
+
+    do {
+      try {
+        System.out.print("Enter in your age: " );
+        int test = input.nextInt();
+        
+        System.out.println(
+              "The number that you entered is " + test);
+        
+        continueInput = false;
+      }
+      catch (InputMismatchException ex) {
+        System.out.println("Try again. (" + 
+                          "Incorrect input: an interger is required)");
+        input.nextLine();
+      }
+    } while(continueInput);
+    
     //finish dialogue taken from the file. 
     tool.readFile("Story.txt", "Scene5", "endScene5");
-    
+
     //method call to create different paths for age response.
     ageScenario(yourAge, yourName, affectionPoints);
-    
+
      if(yourAge < 15 || yourAge > 18){
        yourAge = 17; //reset age in case user enters an invalid age for current setting.
      }
-    
+
     //prompt the user to enter in their age
     tool.readFile("Story.txt", "Scene6", "endScene6");
     System.out.println(yourName + ": I happen to be\n");
     tool.readFile("Story.txt", "Scene7", "endScene7");
-    
+
     //get first number entered  by the user
     heightFeet = input.nextInt();
     //get second number entered by the user.
     heightInches = input.nextInt();
     System.out.print(heightFeet + "'" + heightInches + "\"\n");
-    
+
     //convert to inches from feet to inches.
     totalHeight = ((heightFeet * 12) + heightInches);
-    
+
     //method call to create multiple paths for height.
     heightPaths(totalHeight, yourName, affectionPoints);
-   
+
     tool.readFile("Story.txt", "Scene8", "endScene8");
-    
+
     //create pathways for endings, use affection points to see how well the user did.
     displayEnding(affectionPoints, yourName);
-    
-   
+
+
     //method call to display Game-Over Screen
     tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "endgame");
-    
+
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
-    ArrayList<ArrayList><GameDriverMap>> map = new ArrayList<ArrayList<GameDriverMap>>();
-    ArrayList<GameDriverMap> a1 = new ArrayList<GameDriverMap>();
-    ArrayList<GameDriverMap> a2 = new ArrayList<GameDriverMap>();
-    ArrayList<GameDriverMap> a3 = new ArrayList<GameDriverMap>();
-    
-    
+
+
     //instantiate each Gift object
     Gift g1 = new Gift();
     Gift g2 = new Gift();
     Gift g3 = new Gift();
     Gift g4 = new Gift();
     Gift g5 = new Gift();
-    
+
     //add student objects to ArrayList
     gifts.add(g1);
     gifts.add(g2);
     gifts.add(g3);
     gifts.add(g4);
     gifts.add(g5);
-    
+
     //Setting properties for each student object
     g1.setName("Flowers");
     g2.setName("Chocolates");
     g3.setName("Teddy Bear");
     g4.setName("Jewelry");
     g5.setName("Diamond Ring");
-    
+
     g1.setType("Plant");
     g2.setType("Food");
     g3.setType("Toy");
     g4.setType("Accessory");
     g5.setType("Accessory");
-    
+
     //set-up the random number generator and use it for the method to assign a value.
     g1.setPrice(useRandomNumberGenerator(10, 15));
-    
+
     //Use the random number generator again to get a new value with the updated number range.
     g2.setPrice(useRandomNumberGenerator(10, 20));
-    
+
     g3.setPrice(useRandomNumberGenerator(10, 25));
-    
+
     g4.setPrice(useRandomNumberGenerator(25, 40));
-    
+
     g5.setPrice(useRandomNumberGenerator(40, 99));
-    
+
     g1.setRomancePoints(useRandomNumberGenerator(1, 2));
-    
+
     g2.setRomancePoints(useRandomNumberGenerator(1, 5));
-    
+
     g3.setRomancePoints(useRandomNumberGenerator(5, 10));
-    
+
     g4.setRomancePoints(useRandomNumberGenerator(10, 25));
 
     g5.setRomancePoints(useRandomNumberGenerator(25, 100));
-    
+
     //printing information of each gift after setting properties
     for(int i = 0; i < gifts.size(); i++)
       System.out.println(gifts.get(i));
+    
     
   } //end of main-method
      
