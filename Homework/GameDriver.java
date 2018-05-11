@@ -44,6 +44,7 @@ public class GameDriver {
     int totalHeight; //will be converted to inches. 
     int affectionPoints = 0; //points that will determine different paths and endings either if the
     //date is going well or poorly. 
+    int currentLocation = 0; //this varaible will hol
 
     //This string varaible will store what a user wants to input into a file.
     String content = "";
@@ -148,8 +149,23 @@ public class GameDriver {
 
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
-
-
+    
+    //create a multi-deminsonal array that acts lik a map and tells the user where they are currently located.
+    int[][] map;
+    //assign refrence varaible to the multi-deminsional array of 
+    map = new int[5][5];
+    
+    int i = 0;
+    for(int x = 0; x < 5; x++){
+      for(int y = 0; y < 5; y++, i++) {
+        map[x][y] = i;
+      }
+    }
+    
+    int x = 4;
+    int y = 3;
+    printMyArray(map, x, y);
+    
     //instantiate each Gift object
     Gift g1 = new Gift();
     Gift g2 = new Gift();
@@ -200,16 +216,24 @@ public class GameDriver {
     g5.setRomancePoints(useRandomNumberGenerator(25, 100));
 
     //printing information of each gift after setting properties
-    for(int i = 0; i < gifts.size(); i++)
+    for(i = 0; i < gifts.size(); i++)
       System.out.println(gifts.get(i));
     
     
   } //end of main-method
-     
+  
+  public static void printMyArray(int[][] map, int x, int y){
+    //create a base-line so that the recursion can know where to stop and work backwards.
+    if(x != -1 && y != -1) {
+      printMyArray(map, x - 1, y - 1);
+      System.out.println(map[x][y]);
+    }
+  }
+  
   //method to use the random number generator and get a new random number. 
   public static int useRandomNumberGenerator(int minimum, int maximum) {
     return minimum + (int)(Math.random() * maximum);
-}
+  }
   
   //method to randomly generate an encounter using the random number generator
   public static void displayRandomEncounter(int randomNumber) {

@@ -6,32 +6,32 @@
 public class GameDriverMap{
   
   //Gift has 2 class object for the current location. 
-	private String location;
-  private String currentRoom;
+	private int xLocation;
+  private int yLocation;
   
   //zero-argument default constructor
   public GameDriverMap() {
-    this.location = "nowhere";
-    this.currentRoom = "no room";
+    this.xLocation = 0;
+    this.yLocation = 0;
   }
   
-  public String getLocation() {
-    return this.location;
+  public int getXLocation() {
+    return this.xLocation;
   }
   
-  public void setLocation(String location) {
-    this.location = location;
+  public int getYLocation() {
+    return this.yLocation;
   }
   
-  public String getCurrentRoom() {
-    return this.currentRoom;
+  public void setXLocation(int xLocation) {
+    this.xLocation = xLocation;
   }
   
-  public void setCurrentRoom(String currentRoom) {
-    this.currentRoom = currentRoom;
+  public void setYLocation(int yLocation) {
+    this.yLocation = yLocation;
   }
   
   public String toString(){
-    return "Location: " + this.location + " Current Room: " + this.currentRoom; 
+    return "X - Coordinate: " + this.xLocation + "Y - Coordinate: " + this.yLocation;
   }
 }

@@ -1,5 +1,12 @@
-public class testPractice{
+public class testPractice {
   public static void main(String[] args) {
-    System.out.println("1" + 1);
+    xMethod(5);
+  }
+  
+  public static void xMethod (int n) {
+    if (n > 0) {
+      xMethod(n - 1);
+      System.out.print(n + " ");
+    }
   }
 }
