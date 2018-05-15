@@ -26,15 +26,41 @@ public class GameDriver {
     //calling a class that you made, giving a varaible and instantiating in memory to use it.
     //constructor.
     Utility tool = new Utility();
+    
+    //create an array list of objects for the stats that will be used in the game.
+    //There is a total of 6 stats.
+    ArrayList<Stat> stats = new ArrayList<Stat>();
+    
+    Stat s1 = new Stat();
+    Stat s2 = new Stat();
+    Stat s3 = new Stat();
+    Stat s4 = new Stat();
+    Stat s5 = new Stat();
+    Stat s6 = new Stat();
+    
+    stats.add(s1);
+    stats.add(s2);
+    stats.add(s3);
+    stats.add(s4);
+    stats.add(s5);
+    stats.add(s6);
+    
+    s1.setName("Intellegence");
+    s2.setName("Strength");
+    s3.setName("Charisma");
+    s4.setName("Courage");
+    s5.setName("Humor");
+    s6.setName("Sensitivity");
 
     //method call to display the splash screen of the text-based adventure to user.
     tool.readFile("SplashScreens.txt", "Beginning Splash Screen", "}");
 
     //method call to display the background story of the game to the user.
     tool.readFile("Story.txt", "Scene1", "endScene1");
+    
+    
 
     //declare variable of String type for player's name.      
-
     String yourName;
     int favoriteNumber;
     int kathyNumber;
@@ -145,10 +171,11 @@ public class GameDriver {
 
 
     //method call to display Game-Over Screen
-    tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "endgame");
+    tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
 
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
+
     
     //create a multi-deminsonal array that acts lik a map and tells the user where they are currently located.
     int[][] map;
@@ -172,13 +199,16 @@ public class GameDriver {
     Gift g3 = new Gift();
     Gift g4 = new Gift();
     Gift g5 = new Gift();
-
+    
+    
+    
     //add student objects to ArrayList
     gifts.add(g1);
     gifts.add(g2);
     gifts.add(g3);
     gifts.add(g4);
     gifts.add(g5);
+    
 
     //Setting properties for each student object
     g1.setName("Flowers");
@@ -186,6 +216,8 @@ public class GameDriver {
     g3.setName("Teddy Bear");
     g4.setName("Jewelry");
     g5.setName("Diamond Ring");
+    
+
 
     g1.setType("Plant");
     g2.setType("Food");
@@ -221,6 +253,8 @@ public class GameDriver {
     
     
   } //end of main-method
+  
+  public static void beginningChoices()
   
   public static void printMyArray(int[][] map, int x, int y){
     //create a base-line so that the recursion can know where to stop and work backwards.
