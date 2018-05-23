@@ -9,13 +9,34 @@ gossip about what type of student they are. The new student walks in.
 Everyone in the classrom gasp. you could not believe it. 
 the most beautiful girl you have ever seen. The teacher tells the student to introduce herself.
 "Hello, I'm Kathy", she announced to the class. And so, your quest to win Kathy's heart has begun.
-
 endScene1
 
 Scene2
-
 Narrator: Before we begin the story to your inevitable humiliation, I would
 like to ask you a couple of questions about what type of person you are. 
+
+Narrator: First off, which quality do you believe is the most one to have?
+1) Intellegence
+2) Strength
+3) Courage
+4) Sensitivity
+Narrator: Type in your response: 
+endScene2
+
+Scene3
+
+Narrator: Your father's occupation is:
+1) Teacher
+2) Police Officer
+3) Politican
+4) Stand-Up Comedian
+
+endScene3
+
+
+
+
+
 
 Narrator: You've decided to introduce yourself to Kathy.
 You: My name is: 
