@@ -152,7 +152,7 @@ public class GameDriver {
     String favoriteColor = input.next();
     
     randomNumber = useRandomNumberGenerator(1, 5);
-    
+   
     k5.setInformation(kathysFavoriteColor(randomNumber));
     
     int affectionPoints = 0; //points that will determine different paths and endings either if the
@@ -467,12 +467,12 @@ public class GameDriver {
   }
   
   public static void colorSituation(String favoriteColor, int affectionPoints, ArrayList<Kathy> kathyList) {
-    if(kathyList.get(5).getInformation().equals(favoriteColor)) {
+    if(kathyList.get(4).getInformation().equals(favoriteColor)) {
       System.out.print("Kathy: Oh wow! I was just about to say that to! That's amazing!\n");
       affectionPoints += 3;
     }
     else {
-      System.out.print("Oh how cool, My favorite color is " + kathyList.get(5).getInformation()
+      System.out.print("Oh how cool, My favorite color is " + kathyList.get(4).getInformation()
                       + "\n");
     }
   }
@@ -492,18 +492,18 @@ public class GameDriver {
   
   public static void subjectSituation(String favoriteSubject, int affectionPoints,
                                      String favoriteColor, ArrayList<Kathy> kathyList) {
-    if(kathyList.get(12).getInformation().equals(favoriteSubject) &&
-     (kathyList.get(5).getInformation().equals(favoriteColor)))  {
+    if(kathyList.get(11).getInformation().equals(favoriteSubject) &&
+     (kathyList.get(4).getInformation().equals(favoriteColor)))  {
       System.out.print("Oh wow! Favorite color and favorite school subject!" 
                       + "We're going to be amazing friends!\n");
       affectionPoints += 5;      
     }
-    else if(kathyList.get(12).getInformation().equals(favoriteSubject)) {
+    else if(kathyList.get(11).getInformation().equals(favoriteSubject)) {
       System.out.print("Me too! I hope we get to work together.\n");
       affectionPoints += 3;
     }
     else
-      System.out.print("Yeah. That's also a good subject. My favorite is " + kathyList.get(12).getInformation()
+      System.out.print("Yeah. That's also a good subject. My favorite is " + kathyList.get(11).getInformation()
                       + "\n");
   }
   
