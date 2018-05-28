@@ -27,9 +27,67 @@ public class GameDriver {
     //constructor.
     Utility tool = new Utility();
     
-    //create 6 int varaible for the stats that will be used in the game. Initalize them to 0, for the start 
-    //of the game. 
-    int Intellegence = 0, Strength = 0, Charisma = 0, Courage = 0, Humor = 0, Sensitivity = 0;
+    ArrayList<Stat> stats = new ArrayList<Stat>();
+    
+    Stat s1 = new Stat();
+    Stat s2 = new Stat();
+    Stat s3 = new Stat();
+    Stat s4 = new Stat();
+    Stat s5 = new Stat();
+    Stat s6 = new Stat();
+    
+    stats.add(s1);
+    stats.add(s2);
+    stats.add(s3);
+    stats.add(s4);
+    stats.add(s5);
+    stats.add(s6);
+    
+    s1.setName("Intellegence");
+    s2.setName("Strength");
+    s3.setName("Charisma");
+    s4.setName("Courage");
+    s5.setName("Humor");
+    s6.setName("Sensitivity");
+    
+    ArrayList<Kathy> kathyList = new ArrayList<Kathy>();
+    
+    Kathy k1 = new Kathy();
+    kathyList.add(k1);
+    k1.setName("Phone Number");
+    Kathy k2 = new Kathy();
+    kathyList.add(k2);
+    k2.setName("Birthday");
+    Kathy k3 = new Kathy();
+    kathyList.add(k3);
+    k3.setName("Mom's Occupation");
+    Kathy k4 = new Kathy();
+    kathyList.add(k4);
+    k4.setName("Favorite Movie");
+    Kathy k5 = new Kathy();
+    kathyList.add(k5);
+    k5.setName("Favorite Color");
+    Kathy k6 = new Kathy();
+    kathyList.add(k6);
+    k6.setName("Favorite Food");
+    Kathy k7 = new Kathy();
+    kathyList.add(k7);
+    k7.setName("Favorite Song");
+    Kathy k8 = new Kathy();
+    kathyList.add(k8);
+    k8.setName("Zodiac Sign");
+    Kathy k9 = new Kathy();
+    kathyList.add(k9);
+    k9.setName("Weight");
+    Kathy k10 = new Kathy();
+    kathyList.add(k10);
+    k10.setName("Height");
+    Kathy k11 = new Kathy();
+    kathyList.add(k11);
+    k11.setName("Blood Type");
+    Kathy k12 = new Kathy();
+    kathyList.add(k12);
+    k12.setName("Favorite Subject");
     
     //method call to display the splash screen of the text-based adventure to user.
     tool.readFile("SplashScreens.txt", "Beginning Splash Screen", "}");
@@ -39,104 +97,91 @@ public class GameDriver {
     
     tool.readFile("Story.txt", "Scene2", "endScene2");
     
-    beginningChoices1(Intellegence, Strength, Courage, Sensitivity);
+    beginningChoices1(stats);
     
     tool.readFile("Story.txt", "Scene3", "endScene3");
     
-    beginningChoices2(Intellegence, Strength, Charisma, Humor);
+    beginningChoices2(stats);
     
-
-    //declare variable of String type for player's name.      
-    String yourName;
-    int favoriteNumber;
-    int kathyNumber;
-    int heightFeet;
-    int heightInches;
-    int yourAge = 18;
-    int totalHeight; //will be converted to inches. 
-    int affectionPoints = 0; //points that will determine different paths and endings either if the
-    //date is going well or poorly. 
-    int currentLocation = 0; //this varaible will hol
-
-    //This string varaible will store what a user wants to input into a file.
-    String content = "";
-    int information;
-
-    //declare variables to set up the random number generator.declare
-    int randomNumber = 0;
+    tool.readFile("Story.txt", "Scene4", "endScene4");
+     
+    beginningChoices3(stats);
+    
+    tool.readFile("Story.txt", "Scene5", "endScene5");
+    
+    beginningChoices4(stats);
+    
+    lines();
+    
+    tool.readFile("Story.txt", "Scene6", "endScene6");
+    
+    //declare variables to set up the random number generator
     int minimum; //set min for range for random numbers
     int maximum; //set max for range for random numbers
-
+    
     //method call to use the random number genetor and store the new random number in a variable.
-    randomNumber = useRandomNumberGenerator(1, 3);
+    int randomNumber = useRandomNumberGenerator(1, 3);
 
     //method call to display a random encounter to Kathy for the user.
     displayRandomEncounter(randomNumber); 
-
-    //get user input for their name.
-    tool.readFile("Story.txt", "Scene2", "endScene2");
     
-    System.out.println("Please enter in your name: ");
+    lines();
+    
+    System.out.println("You: Hello, my name is\n" +
+                       "Narrator: Type in your name here: ");
+    
+     //declare variable of String type for player's name.      
+    String yourName;
+    //This string varaible will store what a user wants to input into a file.
+    String content = "";
     
     content = input.next();
     
     yourName = content;
     tool.writeFile("testWriting.txt", content);
-
-    tool.readFile("Story.txt", "Scene3", "endScene3");
-
-    System.out.println(yourName + ": My favorite number is ");
-
-    //get user input for favoriteNumber
-
-    favoriteNumber = input.nextInt();
-    System.out.println(yourName + ": What about you?\n");
-
-
-    //generate a random number for Kathy
-    kathyNumber = useRandomNumberGenerator(1, 100);
-
-    //comparison operator to compare Kathy's number with yours
-    possibleRoute(favoriteNumber, kathyNumber, affectionPoints, yourName);
-
-    //prompt the user to enter in their age
-    tool.readFile("Story.txt", "Scene4", "endScene4");
-
-    System.out.print(yourName + ": I am ");
     
-    boolean continueInput = true;
-
-    do {
-      try {
-        System.out.print("Enter in your age: " );
-        int test = input.nextInt();
-        
-        System.out.println(
-              "The number that you entered is " + test);
-        
-        continueInput = false;
-      }
-      catch (InputMismatchException ex) {
-        System.out.println("Try again. (" + 
-                          "Incorrect input: an interger is required)");
-        input.nextLine();
-      }
-    } while(continueInput);
+    System.out.print(yourName + ":");
     
-    //finish dialogue taken from the file. 
-    tool.readFile("Story.txt", "Scene5", "endScene5");
+    tool.readFile("Story.txt", "Scene8", "endScene8");
+    
+    lines();
+    
+    System.out.print("My favorite color is\n"
+                      + "Enter in your favorite color: ");
+    
+    String favoriteColor = input.next();
+    
+    randomNumber = useRandomNumberGenerator(1, 5);
+    
+    k5.setInformation(kathysFavoriteColor(randomNumber));
+    
+    int affectionPoints = 0; //points that will determine different paths and endings either if the
+    //date is going well or poorly. 
+    
+    colorSituation(favoriteColor, affectionPoints, kathyList);
+    
+    lines();
 
-    //method call to create different paths for age response.
-    ageScenario(yourAge, yourName, affectionPoints);
-
-     if(yourAge < 15 || yourAge > 18){
-       yourAge = 17; //reset age in case user enters an invalid age for current setting.
-     }
-
-    //prompt the user to enter in their age
-    tool.readFile("Story.txt", "Scene6", "endScene6");
-    System.out.println(yourName + ": I happen to be\n");
-    tool.readFile("Story.txt", "Scene7", "endScene7");
+    tool.readFile("Story.txt", "Scene11", "endScene11");
+    
+    randomNumber = useRandomNumberGenerator(1, 5);
+    
+    k12.setInformation(kathysFavoriteSubject(randomNumber));
+    
+    String favoriteSubject = input.next();
+    
+    subjectSituation(favoriteSubject, affectionPoints,
+                    favoriteColor, kathyList);
+    
+    lines();
+    
+    tool.readFile("Story.txt", "Scene12", "endScene12");
+     
+    int heightFeet;
+    int heightInches;
+    int totalHeight; //will be converted to inches. 
+    
+    System.out.print("I happen to be: ");
 
     //get first number entered  by the user
     heightFeet = input.nextInt();
@@ -149,16 +194,41 @@ public class GameDriver {
 
     //method call to create multiple paths for height.
     heightPaths(totalHeight, yourName, affectionPoints);
-
-    tool.readFile("Story.txt", "Scene8", "endScene8");
+    
+    randomNumber = useRandomNumberGenerator(1, 3);
+    
+    k10.setInformation(kathyHeight(randomNumber));
+    
+    tool.readFile("Story.txt", "Scene13", "endScene13");
+    
+    lines();
 
     //create pathways for endings, use affection points to see how well the user did.
     displayEnding(affectionPoints, yourName);
 
+    tool.readFile("Story.txt", "Scene14", "endScene14");
+    
+    lines();
+    
+    promptCommand();
+    
+    input.next();
+    
+    tool.readFile("SplashScreens.txt", "Game Instructions", "End Game Instructions");
+    
+    tool.readFile("Story.txt", "Scene15", "endScene15");
+    
+    lines();
+    
+    promptCommand();
+    
+    input.next();
+    
+    int userCommand;
 
     //method call to display Game-Over Screen
     tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
-
+    
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
     
@@ -168,26 +238,21 @@ public class GameDriver {
     Gift g3 = new Gift();
     Gift g4 = new Gift();
     Gift g5 = new Gift();
-    
-    
-    
+     
     //add student objects to ArrayList
     gifts.add(g1);
     gifts.add(g2);
     gifts.add(g3);
     gifts.add(g4);
     gifts.add(g5);
-    
-
+   
     //Setting properties for each student object
     g1.setName("Flowers");
     g2.setName("Chocolates");
     g3.setName("Teddy Bear");
     g4.setName("Jewelry");
     g5.setName("Diamond Ring");
-    
-
-
+   
     g1.setType("Plant");
     g2.setType("Food");
     g3.setType("Toy");
@@ -224,7 +289,7 @@ public class GameDriver {
   } //end of main-method
   
   //This method will display the first of the user choices. 
-  public static void beginningChoices1(int Intellegence, int Strength, int Courage, int Sensitivity){
+  public static void beginningChoices1(ArrayList<Stat> stats){
     Scanner input = new Scanner(System.in);
     
     int choice;
@@ -235,19 +300,19 @@ public class GameDriver {
       clear = true;
       
       if(choice == 1){
-         Intellegence++;
+         stats.get(0).setValue(stats.get(0).getValue() + 1);
         System.out.println("Intellegence +1!");
       }
       else if(choice == 2){
-        Strength++;
+        stats.get(1).setValue(stats.get(1).getValue() + 1);
         System.out.println("Strength +1!");
       }
       else if(choice == 3){
-        Courage++;
+        stats.get(3).setValue(stats.get(3).getValue() + 1);
         System.out.println("Courage +1!");
       }
       else if(choice == 4){
-        Sensitivity++;
+        stats.get(5).setValue(stats.get(5).getValue() + 1);
         System.out.println("Sensitivity +1!");
       }
       else {
@@ -257,7 +322,7 @@ public class GameDriver {
     }while(clear == false);
   }
   
-  public static void beginningChoices2(int Intellegence, int Strength, int Charisma, int Humor){
+  public static void beginningChoices2(ArrayList<Stat> stats){
     Scanner input = new Scanner(System.in);
     
     int choice;
@@ -268,19 +333,19 @@ public class GameDriver {
       clear = true;
       
       if(choice == 1){
-        Intellegence++;
+        stats.get(0).setValue(stats.get(0).getValue() + 1);
         System.out.println("Intellegence +1!");
       }
       else if(choice == 2){
-        Strength++;
+        stats.get(1).setValue(stats.get(1).getValue() + 1);
         System.out.println("Strength +1!");
       }
       else if(choice == 3){
-        Charisma++;
+        stats.get(2).setValue(stats.get(2).getValue() + 1);
         System.out.println("Charisma +1!");
       }
       else if(choice == 4){
-        Humor++;
+        stats.get(4).setValue(stats.get(4).getValue() + 1);
         System.out.println("Humor +1!");
       }
       else {
@@ -290,6 +355,79 @@ public class GameDriver {
     }while(clear == false);
   }
   
+    public static void beginningChoices3(ArrayList<Stat> stats){
+    Scanner input = new Scanner(System.in);
+    
+    int choice;
+    boolean clear;
+    
+    do {
+      choice = input.nextInt();
+      clear = true;
+      
+      if(choice == 1){
+        stats.get(0).setValue(stats.get(0).getValue() + 1);
+        System.out.println("Intellegence +1!");
+      }
+      else if(choice == 2){
+        stats.get(2).setValue(stats.get(2).getValue() + 1);
+        System.out.println("Charisma +1!");
+      }
+      else if(choice == 3){
+        stats.get(3).setValue(stats.get(3).getValue() + 1);
+        System.out.println("Courage +1!");
+      }
+      else if(choice == 4){
+        stats.get(5).setValue(stats.get(5).getValue() + 1);
+        System.out.println("Sensitivity +1!");
+      }
+      else {
+        System.out.println("Invalid input. Please enter in a valid choice.");
+        clear = false;
+      }
+    }while(clear == false);
+  }
+  
+  public static void beginningChoices4(ArrayList<Stat> stats){
+     Scanner input = new Scanner(System.in);
+    
+    int choice;
+    boolean clear;
+    
+    do {
+      choice = input.nextInt();
+      clear = true;
+      
+      if(choice == 1){
+        stats.get(0).setValue(stats.get(0).getValue() + 1);
+        System.out.println("Intellegence +1!");
+      }
+      else if(choice == 2){
+        stats.get(2).setValue(stats.get(2).getValue() + 1);
+        System.out.println("Charism +1!");
+      }
+      else if(choice == 3){
+        stats.get(4).setValue(stats.get(4).getValue() + 1);
+        System.out.println("Humor +1!");
+      }
+      else if(choice == 4){
+        stats.get(5).setValue(stats.get(5).getValue() + 1);
+        System.out.println("Sensitivity +1!");
+      }
+      else {
+        System.out.println("Invalid input. Please enter in a valid choice.");
+        clear = false;
+      }
+    }while(clear == false);
+  }
+  
+  public static void lines() {
+    System.out.println("------------------------------------------------------------");
+  }
+  
+  public static void promptCommand() {
+    System.out.print("Type in any key and press enter to continue.\n");
+  }
   
   //method to use the random number generator and get a new random number. 
   public static int useRandomNumberGenerator(int minimum, int maximum) {
@@ -315,39 +453,58 @@ public class GameDriver {
      }     
   }
   
-  public static void possibleRoute(int favoriteNumber, int kathyNumber, int affectionPoints, String yourName) {
-      if(favoriteNumber == kathyNumber) {
-       System.out.println("Kathy: Oh wow! That's my favorite number too!\n"
-                         + "This is amazing!\n");
-      affectionPoints = affectionPoints + 7; //add affection points to total
+  public static String kathysFavoriteColor(int randomNumber) {
+    if(randomNumber == 1)
+       return "Blue";
+    else if(randomNumber == 2)
+       return "Red";
+    else if(randomNumber == 3)
+       return "Green";
+    else if(randomNumber == 4)
+      return "Pink";
+    else
+      return "Purple";
+  }
+  
+  public static void colorSituation(String favoriteColor, int affectionPoints, ArrayList<Kathy> kathyList) {
+    if(kathyList.get(5).getInformation().equals(favoriteColor)) {
+      System.out.print("Kathy: Oh wow! I was just about to say that to! That's amazing!\n");
+      affectionPoints += 3;
     }
     else {
-      System.out.println(yourName + ":That's cool. My favorite number is " + kathyNumber + "\n");
+      System.out.print("Oh how cool, My favorite color is " + kathyList.get(5).getInformation()
+                      + "\n");
     }
   }
   
-  //method to create scenarios for age question response.
-  public static void ageScenario(int yourAge, String yourName, int affectionPoints) {
-     if(yourAge <= 14) {
-      System.out.println("Kathy: Hahaha! Stop messing around. What is a " + yourAge + "\n"
-                        + "Kathy: doing in a highschool? I'm guessing that you're 17.\n"
-                        + yourName + ": You got me. I'm 17.\n"
-                        + "Kathy:  Oh cool. I'm 16 years old.\n");
+  public static String kathysFavoriteSubject(int randomNumber) {
+    if(randomNumber == 1)
+      return "Math";
+    else if(randomNumber == 2)
+      return "English";
+    else if(randomNumber == 3)
+      return "Science";
+    else if(randomNumber == 4)
+      return "History";
+    else
+      return "Art";
+  }
+  
+  public static void subjectSituation(String favoriteSubject, int affectionPoints,
+                                     String favoriteColor, ArrayList<Kathy> kathyList) {
+    if(kathyList.get(12).getInformation().equals(favoriteSubject) &&
+     (kathyList.get(5).getInformation().equals(favoriteColor)))  {
+      System.out.print("Oh wow! Favorite color and favorite school subject!" 
+                      + "We're going to be amazing friends!\n");
+      affectionPoints += 5;      
     }
-    else if(yourAge >= 15 && yourAge <= 18) {
-      System.out.println("Kathy: Oh cool. I'm 16 years old.\n");
-      affectionPoints = affectionPoints + 2;
+    else if(kathyList.get(12).getInformation().equals(favoriteSubject)) {
+      System.out.print("Me too! I hope we get to work together.\n");
+      affectionPoints += 3;
     }
-    else if(yourAge >= 19 && yourAge <= 21) {
-      System.out.println("Kathy: We're you held back a couple of grades?\n"
-                        + yourName + ": Hahaha, no. I'm kidding. I'm 17.\n"
-                        + "Kathy:  Oh cool. I'm 16 years old.\n");
-    }
-    else {
-      System.out.println("Kathy: What?! Did you forget how to count or something?\n"
-                        + yourName + ": Hahaha, no. I'm kidding. I'm 17.\n"
-                        + "Kathy:  Oh cool. I'm 16 years old.\n");
-    }
+    else
+      System.out.print("Yeah. That's also a good subject. My favorite is " + kathyList.get(12).getInformation()
+                      + "\n");
   }
   
   public static void heightPaths(int totalHeight, String yourName,  int affectionPoints) {
@@ -370,6 +527,21 @@ public class GameDriver {
     }
   }
   
+  public static String kathyHeight(int randomNumber) {
+    if(randomNumber == 1){
+      System.out.print("I'm 5'3\" by the way.\n");
+      return "162 cm";
+    }
+    else if(randomNumber == 2){
+      System.out.print("I'm 5'4\" by the way.\n");
+      return "165 cm";
+    }
+    else{
+      System.out.print("I'm 5'5\" by the way.\n");
+      return "168 cm";
+    }
+  }
+  
   //method to display which ending that the user got depending on his performance
   public static void displayEnding(int affectionPoints, String yourName) {
          if(affectionPoints >= 5) {
@@ -388,5 +560,24 @@ public class GameDriver {
                          + yourName + ": Did I do something wrong?\n");
     }
   }
+  
+  public static void displayMainMenu(int userCommand) {
+    Scanner input = new Scanner(System.in);
+    
+    System.out.println("Type \"1\" and press enter to go to the start menu\n"
+                      + "Type \"2\" and press enter to go to the gym\n"
+                      + "Type \"3\" and press enter to go to the school\n"
+                      + "Type \"4\" and press enter to go to the park\n"
+                      + "Type \"5\" and press enter to go to the mall\n"
+                      + "Type \"6\" and press enter to go to City Hall\n"
+                      + "Type \"7\" and press enter to go to the Comedy Show\n");
+    
+    userCommand = input.nextInt();
+    
+    
+    boolean clear = true;
+    
+  }
+  
   
 }

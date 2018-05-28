@@ -9,9 +9,11 @@ gossip about what type of student they are. The new student walks in.
 Everyone in the classrom gasp. you could not believe it. 
 the most beautiful girl you have ever seen. The teacher tells the student to introduce herself.
 "Hello, I'm Kathy", she announced to the class. And so, your quest to win Kathy's heart has begun.
+
 endScene1
 
 Scene2
+
 Narrator: Before we begin the story to your inevitable humiliation, I would
 like to ask you a couple of questions about what type of person you are. 
 
@@ -20,68 +22,103 @@ Narrator: First off, which quality do you believe is the most one to have?
 2) Strength
 3) Courage
 4) Sensitivity
-Narrator: Type in your response: 
+Narrator: Type in your response:
+
 endScene2
 
 Scene3
 
 Narrator: Your father's occupation is:
-1) Teacher
+1) Laywer
 2) Police Officer
 3) Politican
 4) Stand-Up Comedian
 
 endScene3
 
-
-
-
-
-
-Narrator: You've decided to introduce yourself to Kathy.
-You: My name is: 
-
-endScene2
-
-Scene3
-
-Please to meet you.
-Kathy: The feeling is mutual.
-Narrator: You decided to ask Kathy about herself.
-
-endScene3
-
 Scene4
 
-Kathy: Okay. My turn.
-Kathy: How old are you?
+Narrator: Your mother's occupation is:
+1) Teacher
+2) Manager
+3) Nurse
+4) Therapist
 
 endScene4
 
 Scene5
 
-years old
+Narrator: The moment in your life that you're most proud of:
+1) Winning the Science Fair
+2) Being leader of a middle school club 
+3) Played a prank on the entire class
+4) Taking care of a dog
 
 endScene5
 
 Scene6
 
-Kathy: You seem to be a lot taller than how you're sitting
-How tall are you?
+Narrator: Well, you're an absolutely boring person. 
+I honestly have no idea how you're going to win her over, 
+but lets continue with the story.
+
+Narrator: You've decided to introduce yourself to Kathy.
 
 endScene6
 
-Scene7
+Scene8
+ Please to meet you.
+Kathy: The feeling is mutual.
+Narrator: You decided to ask Kathy about herself.
+"What is your favorite color?", you asked Kathy.
+Kathy: "I don't know. Let me think about that, what is yours?"
+
+endScene8
+
+Scene11
+
+Kathy: Okay! My turn. What's your favorite subject in school?
+Narrator: Try to pick a subject that you do not sleep through.
+Enter in your favorite school subject: 
+endScene11
+
+
+Scene12
+
+Kathy: You seem to be a lot taller than how you're sitting
+How tall are you?
 
 Narrator: Enter in your height in feet and then inches, separated by a space or hitting enter.
+endScene12
 
-endScene7
-
-Scene8
-
-Kathy: I happen to be 5"4'
+Scene13
 
 Teacher: Alright everyone. Take out your books and turn to
 page 394.
 
-endScene8
+endScene13
+
+Scene14
+
+Narrator: After a long day of sleeping through the rest of classes, you decide to
+take a break and reflect on the day. You begin to remember about the girl you met,
+You think to yourself how she is the very first crush. You decide that you will 
+ask her out but you realize, you don't have any hobbies, or skills, or even a 
+job to pay for the dates. It's not like you can learn
+any real dating advice from those dating sims games 
+that you play. Plus there is only 100 days left till the end of 
+the school year. 
+
+Your real journey is about to begin.
+
+endScene14
+
+Scene15
+
+Narrator: I'll explain the instructions to the game slowly so even you can understand it. Pay Attention!
+You'll be shown a menu with a list of options that will describe what they do. Type in and
+enter the corresiponding key to gain access to more options. Your mission is to earn money, learn skills, 
+to finally woo over the girl. If you ever need to view the game instructions again because 
+you thought none of this was important.
+
+endScene15

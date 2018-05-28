@@ -3,30 +3,30 @@
 	Author:			Giovanni Pernudi
 */
 
-public class Stat{
+public class Kathy{
 
 	//Stats has 2 class members
 	private String name;
-	private int value;
+	private String information;
 	
 	//Gift has 1 default constructor
-	public Stat(){
+	public Kathy(){
 		
 		//assigns the indicated string to the name property
-		this.name = "someStat";
+		this.name = "Some Information";
 
 		//assigns a value to the value property
-		this.value = 0;
+		this.information = "Unknown";
 	}
 	
 	//Gift has 1 implicit constructor
-	public Stat(String someName, int someValue){
+	public Kathy(String someName, String someInformation){
 	
 		//assigns the value of someName to the name property
 		this.name = someName;
 		
 		//assigns the value of someValue to the  value property
-		this.value = someValue;
+		this.information = someInformation;
 	}
 	
 	//method to set a value to the name property
@@ -44,21 +44,21 @@ public class Stat{
 	}
 	
 	//method to set a value to the value property
-	public void setValue(int newPoints){
+	public void setInformation(String newInformation){
 	
 		//assigns the value of newPoints to the value property
-		this.value = newPoints;
+		this.information = newInformation;
 	}
 	
 	//method to return the value of the Value property
-	public int getValue(){
+	public String getInformation(){
 		
 		//returns the value of the Value property
-		return value;
+		return information;
 	}
 	
 	//method to add together in a string to display the information to user
 	public String toString(){
-		return this.name + ": " + this.value;
+		return this.name + ": " + this.information;
 	}
 }
