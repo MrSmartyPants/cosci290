@@ -95,6 +95,8 @@ public class GameDriver {
     //method call to display the background story of the game to the user.
     tool.readFile("Story.txt", "Scene1", "endScene1");
     
+     lines();
+    
     tool.readFile("Story.txt", "Scene2", "endScene2");
     
     beginningChoices1(stats);
@@ -224,7 +226,10 @@ public class GameDriver {
     
     input.next();
     
-    int userCommand;
+    int userCommand = 0;
+    int Cash = 0;
+    
+    displayMainMenu(userCommand, stats, kathyList, Cash);
 
     //method call to display Game-Over Screen
     tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
@@ -467,7 +472,7 @@ public class GameDriver {
   }
   
   public static void colorSituation(String favoriteColor, int affectionPoints, ArrayList<Kathy> kathyList) {
-    if(kathyList.get(4).getInformation().equals(favoriteColor)) {
+    if(kathyList.get(4).getInformation().equalsIgnoreCase(favoriteColor)) {
       System.out.print("Kathy: Oh wow! I was just about to say that to! That's amazing!\n");
       affectionPoints += 3;
     }
@@ -492,13 +497,13 @@ public class GameDriver {
   
   public static void subjectSituation(String favoriteSubject, int affectionPoints,
                                      String favoriteColor, ArrayList<Kathy> kathyList) {
-    if(kathyList.get(11).getInformation().equals(favoriteSubject) &&
-     (kathyList.get(4).getInformation().equals(favoriteColor)))  {
+    if(kathyList.get(11).getInformation().equalsIgnoreCase(favoriteSubject) &&
+     (kathyList.get(4).getInformation().equalsIgnoreCase(favoriteColor)))  {
       System.out.print("Oh wow! Favorite color and favorite school subject!" 
-                      + "We're going to be amazing friends!\n");
+                      + " We're going to be amazing friends!\n");
       affectionPoints += 5;      
     }
-    else if(kathyList.get(11).getInformation().equals(favoriteSubject)) {
+    else if(kathyList.get(11).getInformation().equalsIgnoreCase(favoriteSubject)) {
       System.out.print("Me too! I hope we get to work together.\n");
       affectionPoints += 3;
     }
@@ -561,7 +566,8 @@ public class GameDriver {
     }
   }
   
-  public static void displayMainMenu(int userCommand) {
+  public static void displayMainMenu(int userCommand, ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash) {
     Scanner input = new Scanner(System.in);
     
     System.out.println("Type \"1\" and press enter to go to the start menu\n"
@@ -574,10 +580,273 @@ public class GameDriver {
     
     userCommand = input.nextInt();
     
+    boolean clear = true; 
+    
+    do{
+      if(userCommand == 1)
+        displayStartMenu(userCommand, stats, kathyList, Cash);
+      else if(userCommand == 2)
+        displayGymMenu(stats, Cash);
+      else if(userCommand == 3)
+        displaySchoolMenu(stats, kathyList);
+   else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+  }
+  
+  
+  public static void displayStartMenu(int userCommand, ArrayList<Stat> stats, ArrayList<Kathy> kathyList, int Cash){
+    Scanner input = new Scanner(System.in);
+    
+    System.out.println("Type \"1\" and press enter to view your current stats\n"
+                      + "Type \"2\" and press enter to view Kathy's known information\n");
+    
+    userCommand = input.nextInt();
     
     boolean clear = true;
     
+   do{
+     if(userCommand == 1)
+       displayStats(stats, Cash);
+     else if(userCommand == 2)
+       displayKathyInformation(kathyList);
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+                     
   }
+  
+  public static void displayStats(ArrayList<Stat> stats, int Cash) {
+    Scanner input = new Scanner(System.in);
+    lines();
+    
+    for(int i = 0; i < stats.size(); i++){
+      System.out.println(stats.get(i));
+    }
+    
+    System.out.println("Amount of Money: " + Cash);
+    
+    lines();
+    
+     promptCommand();
+    
+    input.next();
+  }
+  
+  public static void displayKathyInformation(ArrayList<Kathy> kathyList) {
+    Scanner input = new Scanner(System.in);
+    lines();
+    
+    for(int i = 0; i < kathyList.size(); i++){
+      System.out.println(kathyList.get(i));
+    }
+     lines();
+    
+     promptCommand();
+    
+    input.next();
+  }
+  
+  public static void displayGymMenu(ArrayList<Stat> stats, int Cash) {
+    Scanner input = new Scanner(System.in);
+    lines();
+    
+    int userCommand = 0;
+    
+    System.out.println("Press \"1\" and hit enter to hit the weights. (Increase Strength 1 - 4 pts.)\n"
+                      +"Press \"2\" and hit enter to hire a private trainer( Increase Strength 5 - 9 pts)\n"
+                      + "Press \"3\" and hit enter to work around the gym(Increase money by $5 - $10)\n");
+    userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+     if(userCommand == 1) {
+       stats.get(1).setValue(stats.get(1).getValue() + useRandomNumberGenerator(1, 4));
+       System.out.println(stats.get(1).toString());
+     }
+     else if(userCommand == 2) {
+       stats.get(1).setValue(stats.get(1).getValue() + useRandomNumberGenerator(5, 9));
+       System.out.println(stats.get(1).toString());
+     }
+     else if(userCommand == 3) {
+       Cash = Cash + useRandomNumberGenerator(5, 10);
+       System.out.println("Amount of Cash: " + Cash);
+     }
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+  }
+  
+  public static void displaySchoolMenu(ArrayList<Stat> stats, ArrayList<Kathy> kathyList){
+    Scanner input = new Scanner(System.in);
+    lines();
+    
+    int userCommand = 0;
+    
+    System.out.println("Press \"1\" and hit enter to hit the books (Increase Intellegence 1 - 4 pts.)\n"
+                      +"Press \"2\" and hit enter to hire a private tutor(Increase Intellegence 5 - 9 pts)\n"
+                      + "Press \"3\" to talk to Kathy and potentially learn more about her.\n");
+    userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+     if(userCommand == 1) {
+       stats.get(0).setValue(stats.get(0).getValue() + useRandomNumberGenerator(1, 4));
+       System.out.println(stats.get(0).toString());
+     }
+     else if(userCommand == 2) {
+       stats.get(0).setValue(stats.get(0).getValue() + useRandomNumberGenerator(5, 9));
+       System.out.println(stats.get(0).toString());
+     }
+     else if(userCommand == 3) {
+       talkToKathy(kathyList);
+     }
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+  }
+  
+ public static void talkToKathy(ArrayList<Kathy> kathyList) {
+   int random = useRandomNumberGenerator(1, 10);
+   
+   if(random == 1){
+      kathyPhoneNumber(kathyList);
+   }
+   else if(random == 2){
+     kathyBirthday(kathyList);
+   }
+   else if(random == 3){
+     momOccupation(kathyList);
+   }
+   else if(random == 4){
+     kathyFavoriteMovie(kathyList);
+   }
+   else if(random == 5){
+     kathyFavoriteFood(kathyList);
+   }
+   else if(random == 6){
+     kathyFavoriteSong(kathyList);
+   }
+ }
+    
+  public static void kathyPhoneNumber(ArrayList<Kathy> kathyList) {
+    if(!(kathyList.get(0).getInformation().equals("Unknown"))){
+      System.out.println("What's my number again? It's " + kathyList.get(0).getInformation()
+                        + "\nTry not to lose it");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){ 
+        kathyList.get(0).setInformation("866-731-8410");
+        System.out.println("Kathy: I never gave you my number? It's " + kathyList.get(0).getInformation());
+      }
+       else{
+         kathyList.get(0).setInformation("866-656-7354");
+         System.out.println("Kathy: I never gave you my number? It's " + kathyList.get(0).getInformation());
+      }
+    }
+  }
+  
+  public static void kathyBirthday(ArrayList<Kathy> kathyList) {
+    if(!(kathyList.get(1).getInformation().equals("Unknown"))){
+      System.out.println("My Birthday? Sure, it's " + kathyList.get(1).getInformation()
+                        + "\nDon't try to calculate my age.");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+          if(random == 1){ 
+        kathyList.get(1).setInformation("August 29");
+        System.out.println("Kathy: I never told you my birthday? Really? It's " + kathyList.get(1).getInformation());
+        kathyList.get(7).setInformation("Virgo");
+      }
+       else{
+         kathyList.get(1).setInformation("November 21");
+         System.out.println("Kathy: I never told you my birthday? Really? It's " + kathyList.get(1).getInformation());
+         kathyList.get(7).setInformation("Scorpio");
+       }
+    }
+  }
+  
+  public static void momOccupation(ArrayList<Kathy> kathyList) {
+    if(!(kathyList.get(2).getInformation().equals("Unknown"))){
+      System.out.println("My mom sure does love working at " + kathyList.get(2).getInformation());
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 4);
+      
+      if(random == 1){ 
+        kathyList.get(2).setInformation("Wedding Planner");
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+      }
+       else if(random == 2){
+         kathyList.get(2).setInformation("Web-Page Designer");
+         System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+      }
+      else if(random == 3){
+       kathyList.get(2).setInformation("Florist");
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+      }
+      else{
+        kathyList.get(2).setInformation("Landscape Architect");
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+       }
+     }
+   }
+  
+   public static void kathyFavoriteMovie(ArrayList<Kathy> kathyList) {
+    if(!(kathyList.get(3).getInformation().equals("Unknown"))){
+      System.out.println("I can't wait to watch " + kathyList.get(3).getInformation()
+                        + "\nIt's going to be great");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){ 
+        kathyList.get(3).setInformation("Titanic");
+        System.out.println("Kathy: We should watch " + kathyList.get(3).getInformation()
+                          + " It's my favorite movie. You'll like it");
+      }
+       else{
+        kathyList.get(3).setInformation("Twlight");
+        System.out.println("Kathy: We should watch " + kathyList.get(3).getInformation()
+                          + " It's my favorite movie. You'll like it");
+      }
+    }
+  }
+  
+     public static void kathyFavoriteFood(ArrayList<Kathy> kathyList) {
+    if(!(kathyList.get(5).getInformation().equals("Unknown"))){
+      System.out.println("I hope today's lunch is " + kathyList.get(5).getInformation()
+                        + "\nI haven't had it in a while");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){ 
+        kathyList.get(5).setInformation("Noodle soup");
+        System.out.println("Kathy: Have you tried " + kathyList.get(5).getInformation()
+                          + "? It's the bomb");
+      }
+       else{
+        kathyList.get(5).setInformation("Sushi");
+        System.out.println("Kathy: Have you tried " + kathyList.get(5).getInformation()
+                           + "? It's the bomb");
+      }
+    }
+  }
+  
+  
   
   
 }
