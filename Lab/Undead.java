@@ -66,6 +66,6 @@ public abstract class Undead {
   
   /* This method will print out a random number that will represent the attack of the Object. */
   public void attack() {
-    System.out.println(0 + (int)(Math.random() * 100));
+    System.out.println(getName() + " has attacked the enemy! It dealt " + 0 + (int)(Math.random() * 100) + " % of hitpoints.");
   }
 }
