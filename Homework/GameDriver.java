@@ -572,6 +572,8 @@ public class GameDriver {
       date1(stats, kathyList, Cash, holdItem, gifts, day, Energy);
     else if(day == 50)
       date2(stats, kathyList, Cash, holdItem, gifts, day, Energy);
+    else if(day == 100)
+      ending(stats, kathyList, Cash, holdItem, gifts, day, Energy);
      else
        System.out.print("");
     
@@ -1374,4 +1376,47 @@ public class GameDriver {
       System.out.print("Alright, well. I got to go. Lets do this some other time.\n");
       displayStartMenu(stats, kathyList, Cash, holdItem, gifts, day, Energy);
   }
+  
+    public static void ending(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts, int day, int Energy) {
+      
+   Utility tool = new Utility();
+   Scanner input = new Scanner(System.in);
+      
+    if((stats.get(0).getValue() == 25) && (stats.get(1).getValue() == 25) && (stats.get(2).getValue() == 25)
+       && (stats.get(3).getValue() == 25) && (stats.get(4).getValue() == 25) && (stats.get(5).getValue() == 25) &&
+       (stats.get(6).getValue() == 50)){
+         System.out.println("Kathy: This school year has been amazing! I have made so many friends. I got good grades.\n"
+                            + "I got to see so much of this city but most importantly, I met you.\n"
+                           + "You've done so much for me. You've became stronger, you now managed to ace all of your\n"
+                           + "classes, you're handsom, you're hilarious, you're sweet and most of all you did this all for me!\n"
+                           + "I love you.\n"
+                           + "Narrator: Kathy beings to blush\n"
+                           + "You: I know.\n"
+                           + "Narrator: And thus ends another romance story that ends in a happy ending. all thanks to me, Cupid");
+    }
+      else{
+         System.out.println("Kathy: Um... I have something to say.\n"
+                           + "You: What is it"
+                           + "Kathy: I've been thinking about us lately and I have to confess something\n"
+                           + "Narrator: Kathy looks down on the ground looking sad.\n"
+                           + "Kathy: There's someone else.\n"
+                            + "You: What?!\n"
+                           + "Kathy: I'm sorry!\n"
+                           + "Narrator: Kathy begins to sob and run away.\n"
+                           + "Narrator: Feeling defeated that you did not win Kathy's heart after all, you begin to cry\n"
+                           + "Narrator: You finally decide to go home as you see Kathy running away in the distance\n"
+                           + "You: Good-bye ... Kathy\n");
+      }
+    
+  
+  tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
+  
+  System.out.print("Type something and press enter to finish the game.\n");
+  input.next();
+  
+  System.exit(0);
+    }
+      
 }
