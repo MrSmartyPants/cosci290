@@ -637,7 +637,7 @@ public class GameDriver {
        System.out.print("Invalid input. Please enter in a valid input.\n");
        clear = false; 
      }
-   }while(clear == false) 
+   }while(clear == false) ;
     
   }
   
@@ -790,6 +790,7 @@ public class GameDriver {
   public static void kathyPhoneNumber(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -818,6 +819,7 @@ public class GameDriver {
   public static void kathyBirthday(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -847,6 +849,7 @@ public class GameDriver {
   public static void momOccupation(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -882,6 +885,7 @@ public class GameDriver {
   public static void kathyFavoriteMovie(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -912,6 +916,7 @@ public class GameDriver {
   public static void kathyFavoriteFood(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -942,6 +947,7 @@ public class GameDriver {
   public static void kathyFavoriteSong(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -972,6 +978,7 @@ public class GameDriver {
   public static void kathyWeight(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
     System.out.println("\n");
     
     lines();
@@ -1002,6 +1009,7 @@ public class GameDriver {
   public static void kathyBloodType(ArrayList<Stat> stats,
                                     ArrayList<Kathy> kathyList, int Cash, String holdItem, 
                                     ArrayList<Gift> gifts) {
+   Scanner input = new Scanner(System.in);
    System.out.println("\n");
     
     lines();
