@@ -15,7 +15,7 @@ public class TestUndead{
     
     /* Creating 5 new objects of UndeadHealer class with different parameters */ 
     UndeadHealer Priest = new UndeadHealer();
-    UndeadHealer Druid = new UndeadHealer( "Druid", 630);
+    UndeadHealer Druid = new UndeadHealer("Druid", 630);
     UndeadHealer Paladin = new UndeadHealer(720, 1880, "Paladin");
     UndeadHealer Monk = new UndeadHealer(3287, 5667, "Monk", "Elixer");
     UndeadHealer Shaman = new UndeadHealer(7283, 9832, "Shaman", "Retribution", "Phoenix Down");

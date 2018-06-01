@@ -226,13 +226,8 @@ public class GameDriver {
     
     input.next();
     
-    int userCommand = 0;
     int Cash = 0;
-    
-    displayMainMenu(userCommand, stats, kathyList, Cash);
-
-    //method call to display Game-Over Screen
-    tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
+    String holdItem = "";
     
     //instantiate ArrayList of int objects
     ArrayList<Gift> gifts = new ArrayList<Gift>();
@@ -265,16 +260,21 @@ public class GameDriver {
     g5.setType("Accessory");
 
     //set-up the random number generator and use it for the method to assign a value.
-    g1.setPrice(useRandomNumberGenerator(10, 15));
+    g1.setPrice(10);
 
     //Use the random number generator again to get a new value with the updated number range.
-    g2.setPrice(useRandomNumberGenerator(10, 20));
+    g2.setPrice(15);
 
-    g3.setPrice(useRandomNumberGenerator(10, 25));
+    g3.setPrice(25);
 
-    g4.setPrice(useRandomNumberGenerator(25, 40));
+    g4.setPrice(40);
 
-    g5.setPrice(useRandomNumberGenerator(40, 99));
+    g5.setPrice(99);
+    
+    displayMainMenu(stats, kathyList, Cash, holdItem, gifts);
+
+    //method call to display Game-Over Screen
+    tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
 
     g1.setRomancePoints(useRandomNumberGenerator(1, 2));
 
@@ -289,7 +289,6 @@ public class GameDriver {
     //printing information of each gift after setting properties
     for(int i = 0; i < gifts.size(); i++)
       System.out.println(gifts.get(i));
-    
     
   } //end of main-method
   
@@ -360,7 +359,7 @@ public class GameDriver {
     }while(clear == false);
   }
   
-    public static void beginningChoices3(ArrayList<Stat> stats){
+  public static void beginningChoices3(ArrayList<Stat> stats){
     Scanner input = new Scanner(System.in);
     
     int choice;
@@ -566,9 +565,14 @@ public class GameDriver {
     }
   }
   
-  public static void displayMainMenu(int userCommand, ArrayList<Stat> stats,
-                                    ArrayList<Kathy> kathyList, int Cash) {
+  public static void displayMainMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
     Scanner input = new Scanner(System.in);
+    
+   System.out.println("\n");
+    
+    lines();
     
     System.out.println("Type \"1\" and press enter to go to the start menu\n"
                       + "Type \"2\" and press enter to go to the gym\n"
@@ -578,17 +582,25 @@ public class GameDriver {
                       + "Type \"6\" and press enter to go to City Hall\n"
                       + "Type \"7\" and press enter to go to the Comedy Show\n");
     
-    userCommand = input.nextInt();
+    int userCommand = input.nextInt();
     
     boolean clear = true; 
     
     do{
       if(userCommand == 1)
-        displayStartMenu(userCommand, stats, kathyList, Cash);
+        displayStartMenu(stats, kathyList, Cash, holdItem, gifts);
       else if(userCommand == 2)
-        displayGymMenu(stats, Cash);
+        displayGymMenu(stats, kathyList, Cash, holdItem, gifts);
       else if(userCommand == 3)
-        displaySchoolMenu(stats, kathyList);
+        displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
+      else if(userCommand == 4)
+        displayParkMenu(stats, kathyList, Cash, holdItem, gifts);
+      else if(userCommand == 5)
+        displayMallMenu(stats, kathyList, Cash, holdItem, gifts);
+       else if(userCommand == 6)
+         displayCityHallMenu(stats, kathyList, Cash, holdItem, gifts);
+      else if(userCommand == 7)
+        displayComedyShowMenu(stats, kathyList, Cash, holdItem, gifts);
    else{
        System.out.print("Invalid input. Please enter in a valid input.\n");
        clear = false; 
@@ -597,31 +609,44 @@ public class GameDriver {
   }
   
   
-  public static void displayStartMenu(int userCommand, ArrayList<Stat> stats, ArrayList<Kathy> kathyList, int Cash){
+  public static void displayStartMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts){
     Scanner input = new Scanner(System.in);
     
-    System.out.println("Type \"1\" and press enter to view your current stats\n"
-                      + "Type \"2\" and press enter to view Kathy's known information\n");
+    System.out.println("\n");
     
-    userCommand = input.nextInt();
+    lines();
+    
+    System.out.println("Type \"1\" and press enter to view your current stats\n"
+                      + "Type \"2\" and press enter to view Kathy's known information\n"
+                      + "Type \"3\" to go back to the main menu.");
+    
+    int userCommand = input.nextInt();
     
     boolean clear = true;
     
    do{
      if(userCommand == 1)
-       displayStats(stats, Cash);
+       displayStats(stats, kathyList, Cash, holdItem, gifts);
      else if(userCommand == 2)
-       displayKathyInformation(kathyList);
+       displayKathyInformation(stats, kathyList, Cash, holdItem, gifts);
+     else if(userCommand == 3)
+       displayMainMenu(stats, kathyList, Cash, holdItem, gifts);
      else{
        System.out.print("Invalid input. Please enter in a valid input.\n");
        clear = false; 
      }
-   }while(clear == false);
-                     
+   }while(clear == false) 
+    
   }
   
-  public static void displayStats(ArrayList<Stat> stats, int Cash) {
+  public static void displayStats(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
     Scanner input = new Scanner(System.in);
+    System.out.println("\n");
+    
     lines();
     
     for(int i = 0; i < stats.size(); i++){
@@ -629,37 +654,41 @@ public class GameDriver {
     }
     
     System.out.println("Amount of Money: " + Cash);
-    
     lines();
-    
-     promptCommand();
-    
+    System.out.println("Type any character and press enter to return to the previous menu.");
     input.next();
+    displayStartMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
-  public static void displayKathyInformation(ArrayList<Kathy> kathyList) {
+  public static void displayKathyInformation(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
     Scanner input = new Scanner(System.in);
+    System.out.println("\n");
+    
     lines();
     
     for(int i = 0; i < kathyList.size(); i++){
       System.out.println(kathyList.get(i));
     }
      lines();
-    
-     promptCommand();
-    
+    System.out.println("Type any character and press enter to return to the previous menu.");
     input.next();
+    displayStartMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
-  public static void displayGymMenu(ArrayList<Stat> stats, int Cash) {
+  public static void displayGymMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
     Scanner input = new Scanner(System.in);
+    System.out.println("\n");
     lines();
-    
     int userCommand = 0;
-    
-    System.out.println("Press \"1\" and hit enter to hit the weights. (Increase Strength 1 - 4 pts.)\n"
+    System.out.println("Narrator: Here at the Gym, you can increase your strength or work around for the extra money"
+                      + "Press \"1\" and hit enter to hit the weights. (Increase Strength 1 - 4 pts.)\n"
                       +"Press \"2\" and hit enter to hire a private trainer( Increase Strength 5 - 9 pts)\n"
-                      + "Press \"3\" and hit enter to work around the gym(Increase money by $5 - $10)\n");
+                      + "Press \"3\" and hit enter to work around the gym(Increase money by $5 - $10)\n"
+                      + "Press \"4\" and hit enter to go back to the main menu\n");
     userCommand = input.nextInt();
     
     boolean clear = true;
@@ -677,6 +706,8 @@ public class GameDriver {
        Cash = Cash + useRandomNumberGenerator(5, 10);
        System.out.println("Amount of Cash: " + Cash);
      }
+     else if(userCommand == 4)
+       displayMainMenu(stats, kathyList, Cash, holdItem, gifts);
      else{
        System.out.print("Invalid input. Please enter in a valid input.\n");
        clear = false; 
@@ -684,15 +715,22 @@ public class GameDriver {
    }while(clear == false);
   }
   
-  public static void displaySchoolMenu(ArrayList<Stat> stats, ArrayList<Kathy> kathyList){
+  public static void displaySchoolMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts){
     Scanner input = new Scanner(System.in);
+    System.out.println("\n");
+    
     lines();
     
     int userCommand = 0;
     
-    System.out.println("Press \"1\" and hit enter to hit the books (Increase Intellegence 1 - 4 pts.)\n"
-                      +"Press \"2\" and hit enter to hire a private tutor(Increase Intellegence 5 - 9 pts)\n"
-                      + "Press \"3\" to talk to Kathy and potentially learn more about her.\n");
+    System.out.println("Narrator: You're actually staying after-school? That's a first. You can either hit the books to\n"
+                      + "increase your intellgence or find Kathy around here and talk to her.\n"
+                      + "Press \"1\" and hit enter to hit the books (Increase Intellegence 1 - 4 pts.)\n"
+                      + "Press \"2\" and hit enter to hire a private tutor(Increase Intellegence 5 - 9 pts)\n"
+                      + "Press \"3\" to talk to Kathy and potentially learn more about her.\n"
+                      + "Press \"4\" to return to the main menu.\n");
     userCommand = input.nextInt();
     
     boolean clear = true;
@@ -707,7 +745,10 @@ public class GameDriver {
        System.out.println(stats.get(0).toString());
      }
      else if(userCommand == 3) {
-       talkToKathy(kathyList);
+       talkToKathy(stats, kathyList, Cash, holdItem, gifts);
+     }
+     else if(userCommand == 4){
+       displayMainMenu(stats, kathyList, Cash, holdItem, gifts);
      }
      else{
        System.out.print("Invalid input. Please enter in a valid input.\n");
@@ -716,32 +757,44 @@ public class GameDriver {
    }while(clear == false);
   }
   
- public static void talkToKathy(ArrayList<Kathy> kathyList) {
-   int random = useRandomNumberGenerator(1, 10);
+  public static void talkToKathy(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+   int random = useRandomNumberGenerator(1, 8);
    
    if(random == 1){
-      kathyPhoneNumber(kathyList);
+      kathyPhoneNumber(stats, kathyList, Cash, holdItem, gifts);
    }
    else if(random == 2){
-     kathyBirthday(kathyList);
+     kathyBirthday(stats, kathyList, Cash, holdItem, gifts);
    }
    else if(random == 3){
-     momOccupation(kathyList);
+     momOccupation(stats, kathyList, Cash, holdItem, gifts);
    }
    else if(random == 4){
-     kathyFavoriteMovie(kathyList);
+     kathyFavoriteMovie(stats, kathyList, Cash, holdItem, gifts);
    }
    else if(random == 5){
-     kathyFavoriteFood(kathyList);
+     kathyFavoriteFood(stats, kathyList, Cash, holdItem, gifts);
    }
    else if(random == 6){
-     kathyFavoriteSong(kathyList);
+     kathyFavoriteSong(stats, kathyList, Cash, holdItem, gifts);
    }
+   else if(random == 7){
+     kathyWeight(stats, kathyList, Cash, holdItem, gifts);
+   }
+   else
+     kathyBloodType(stats, kathyList, Cash, holdItem, gifts);
  }
     
-  public static void kathyPhoneNumber(ArrayList<Kathy> kathyList) {
+  public static void kathyPhoneNumber(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
     if(!(kathyList.get(0).getInformation().equals("Unknown"))){
-      System.out.println("What's my number again? It's " + kathyList.get(0).getInformation()
+      System.out.println("Kathy: What's my number again? It's " + kathyList.get(0).getInformation()
                         + "\nTry not to lose it");
     }
     else{
@@ -756,11 +809,20 @@ public class GameDriver {
          System.out.println("Kathy: I never gave you my number? It's " + kathyList.get(0).getInformation());
       }
     }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
-  public static void kathyBirthday(ArrayList<Kathy> kathyList) {
+  public static void kathyBirthday(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
     if(!(kathyList.get(1).getInformation().equals("Unknown"))){
-      System.out.println("My Birthday? Sure, it's " + kathyList.get(1).getInformation()
+      System.out.println("Kathy: My Birthday? Sure, it's " + kathyList.get(1).getInformation()
                         + "\nDon't try to calculate my age.");
     }
     else{
@@ -776,38 +838,56 @@ public class GameDriver {
          kathyList.get(7).setInformation("Scorpio");
        }
     }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
-  public static void momOccupation(ArrayList<Kathy> kathyList) {
+  public static void momOccupation(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
     if(!(kathyList.get(2).getInformation().equals("Unknown"))){
-      System.out.println("My mom sure does love working at " + kathyList.get(2).getInformation());
+      System.out.println("Kathy: My mom sure does love working at " + kathyList.get(2).getInformation());
     }
     else{
       int random = useRandomNumberGenerator(1, 4);
       
       if(random == 1){ 
         kathyList.get(2).setInformation("Wedding Planner");
-        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation() + ".");
       }
        else if(random == 2){
          kathyList.get(2).setInformation("Web-Page Designer");
-         System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+         System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation() + ".");
       }
       else if(random == 3){
        kathyList.get(2).setInformation("Florist");
-        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation() + ".");
       }
       else{
         kathyList.get(2).setInformation("Landscape Architect");
-        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation());
+        System.out.println("Kathy: Does my mother enjoy her work? Of course, she works as a " + kathyList.get(2).getInformation() + ".");
        }
      }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
    }
   
-   public static void kathyFavoriteMovie(ArrayList<Kathy> kathyList) {
+  public static void kathyFavoriteMovie(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
     if(!(kathyList.get(3).getInformation().equals("Unknown"))){
-      System.out.println("I can't wait to watch " + kathyList.get(3).getInformation()
-                        + "\nIt's going to be great");
+      System.out.println("Kathy: I can't wait to watch " + kathyList.get(3).getInformation()
+                        + "\nIt's going to be great.");
     }
     else{
       int random = useRandomNumberGenerator(1, 2);
@@ -815,19 +895,28 @@ public class GameDriver {
       if(random == 1){ 
         kathyList.get(3).setInformation("Titanic");
         System.out.println("Kathy: We should watch " + kathyList.get(3).getInformation()
-                          + " It's my favorite movie. You'll like it");
+                          + " It's my favorite movie. You'll like it.");
       }
        else{
         kathyList.get(3).setInformation("Twlight");
         System.out.println("Kathy: We should watch " + kathyList.get(3).getInformation()
-                          + " It's my favorite movie. You'll like it");
+                          + " It's my favorite movie. You'll like it.");
       }
     }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
-     public static void kathyFavoriteFood(ArrayList<Kathy> kathyList) {
+  public static void kathyFavoriteFood(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
     if(!(kathyList.get(5).getInformation().equals("Unknown"))){
-      System.out.println("I hope today's lunch is " + kathyList.get(5).getInformation()
+      System.out.println("Kathy: I hope today's lunch is " + kathyList.get(5).getInformation()
                         + "\nI haven't had it in a while");
     }
     else{
@@ -844,9 +933,249 @@ public class GameDriver {
                            + "? It's the bomb");
       }
     }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
   }
   
+  public static void kathyFavoriteSong(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
+    if(!(kathyList.get(6).getInformation().equals("Unknown"))){
+      System.out.println("Kathy: I heard " + kathyList.get(6).getInformation()
+                        + "\non the car radio this morning! I was happily singing along!");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){ 
+        kathyList.get(6).setInformation("Time After Time");
+        System.out.println("Kathy: Have you ever heard the song " + kathyList.get(6).getInformation()
+                           + "?\nI'm going to share that song with my future partner.");
+      }
+       else{
+        kathyList.get(5).setInformation("BlackBird");
+        System.out.println("Kathy: Have you ever heard the song " + kathyList.get(6).getInformation()
+                           + "/nThat song always makes me cry when I give a listen.");
+      }
+    }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
+  }
   
+  public static void kathyWeight(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    System.out.println("\n");
+    
+    lines();
+    if(!(kathyList.get(8).getInformation().equals("Unknown"))) {
+      System.out.println("Kathy: Can you believe I'm " + kathyList.get(8).getInformation()
+                         + "\nI should cut back on the soda.\n");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){
+        kathyList.get(8).setInformation("43 kg");
+        System.out.println("Kathy: My weight? Why would you ever ask a girl that question?! Fine! It's " + kathyList.get(6).getInformation()
+                           + "\nYou better not tell anyone!");
+      }
+      else{
+        kathyList.get(8).setInformation("47 kg");
+        System.out.println("Kathy: My weight? Why would you ever ask a girl that question?! Fine! It's " + kathyList.get(6).getInformation()
+                           + "\nYou better not tell anyone!");
+    }
+    }
+    
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
+  }
   
+  public static void kathyBloodType(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+   System.out.println("\n");
+    
+    lines();
+    if(!(kathyList.get(10).getInformation().equals("Unknown"))) {
+      System.out.println("Kathy: " + kathyList.get(10).getInformation()
+                         + "blood type, Vampires wouldn't like my blood.\n");
+    }
+    else{
+      int random = useRandomNumberGenerator(1, 2);
+      
+      if(random == 1){
+        kathyList.get(10).setInformation("O");
+        System.out.println("Kathy: My blood type is O. I'm the person that keeps giving!");
+      }
+      else {
+        kathyList.get(8).setInformation("AB");
+        System.out.println("Kathy: My blood type is AB. I'm the type of person that will take anything.");
+    }
+    }
+    System.out.println("Type any character and press enter to return to the previous menu.");
+    input.next();
+    displaySchoolMenu(stats, kathyList, Cash, holdItem, gifts);
+  }
   
+  public static void displayParkMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts){
+    System.out.println("\n");
+    
+    lines();
+    Scanner input = new Scanner(System.in);
+    
+    System.out.println("Narrator: I see you finally put down the video games and stepped outside. This is the park\n"
+                       + "(Since I assumed you didn't know that). Here you can go for a walk to mull things over with\n"
+                       + "about your current crush and increase your sensitivity or work as a Gardener and earn more sweet cash."
+                       + "Type \"1\" and press enter to work as a garderner. (Increase Cash - Cash: $20 - $45)\n"
+                       + "Type \"2\" and press enter to take a walk in the park (Increase Sensitivity: 5 - 10");
+    
+    int userCommand = 0;
+    
+    userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+     if(userCommand == 1) {
+       Cash = Cash + useRandomNumberGenerator(20, 45);
+     }
+     else if(userCommand == 2){
+       stats.get(5).setValue(stats.get(5).getValue() + useRandomNumberGenerator(5, 10));
+       System.out.println(stats.get(5).toString());
+     }
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+                     
+  }
+  
+  public static void displayMallMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts){
+    System.out.println("\n");
+    
+    lines();
+    Scanner input = new Scanner(System.in);
+    
+    System.out.print("Employee-of-the-month: Welcome to the mall. I hope you find everything you are looking for.\n"
+                    + "Type \"1\" to purchase Flowers (Affection Points: 1 - 2, Cost: $10)\n"
+                    + "Type \"2\" to purchase Chocalates (Affection Points: 1 - 5, Cost: $15)\n"
+                    + "Type \"3\" to purchase a Teddy Bear (Affection Points: 5 - 10, Cost: $25)\n"
+                    + "Type \"4\" to purchase Jewelry (Affection Points: 10 - 25, Cost: $40)\n"
+                    + "Type \"5\" to purchase a Diamond Ring (Affection Points: 25 - 40, Cost: $99\n");
+    
+    int userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+     if(Cash < 10)
+       System.out.println("Employee-of-the-month: You're too poor to afford anything. Get a job");
+     else if (userCommand == 1 && Cash > 10) {
+       Cash = Cash - 10;
+       holdItem = "Flowers";
+     }
+     else if (userCommand == 2 && Cash > 15) {
+       Cash = Cash - 15;
+       holdItem = "Chocalates";
+     }
+     else if(userCommand == 3 && Cash > 25) {
+       Cash = Cash - 25;
+       holdItem = "Teddy Bear";
+     }
+     else if(userCommand == 4 && Cash > 40) {
+       Cash = Cash - 40;
+       holdItem = "Jewelry";
+     }
+     else if(userCommand == 5 && Cash > 99) {
+       Cash = Cash - 99;
+       holdItem = "Diamond Ring";
+     }
+     else{
+       System.out.print("Invalid input or insufficent currency. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+      
+  }
+  
+  public static void displayCityHallMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+     Scanner input = new Scanner(System.in);
+     System.out.println("\n");
+    
+    lines();
+    
+    System.out.print("Welcome to City Hall! Here you can working leadership positions and increasing your overall Charisma to lead a group.\n"
+                    + "Type \"1\" to work for the city (Cash earned: $10 - 15\n"
+                    + "Type \"2\" to practice giving annoncenments for board meetings (Charism: +7 - 10 points\n");
+    
+    int userCommand = 0;
+    
+    userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+    if(userCommand == 1) {
+      Cash = Cash + useRandomNumberGenerator(10, 15);
+      System.out.print("Cash: " + Cash);
+    }
+    else if(userCommand == 2) {
+      stats.get(2).setValue(stats.get(2).getValue() + useRandomNumberGenerator(7, 10));
+      stats.get(2).getValue();
+    }
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+      
+  }
+  
+  public static void displayComedyShowMenu(ArrayList<Stat> stats,
+                                    ArrayList<Kathy> kathyList, int Cash, String holdItem, 
+                                    ArrayList<Gift> gifts) {
+    Scanner input = new Scanner(System.in);
+    System.out.println("\n");
+    
+    lines();
+    
+    System.out.print("Welcome to the Comedy show, here you can practice your stand-up routine to increase\n"
+                     + "your Humor and your revenue.\n"
+                    + "Type \"1\" to do stand - up (Increase humor: by 5 - 10pts, Increase Cash by $20 - $45\n");
+    
+   
+    int userCommand = input.nextInt();
+    
+    boolean clear = true;
+    
+   do{
+    if(userCommand == 1) {
+      Cash = Cash + useRandomNumberGenerator(20, 45);
+      System.out.print("Cash: " + Cash);
+      stats.get(4).setValue(stats.get(4).getValue() + useRandomNumberGenerator(5, 10));
+      stats.get(4).getValue();
+    }
+     else{
+       System.out.print("Invalid input. Please enter in a valid input.\n");
+       clear = false; 
+     }
+   }while(clear == false);
+      
+  }
 }
