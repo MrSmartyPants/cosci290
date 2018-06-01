@@ -576,9 +576,7 @@ public class GameDriver {
       ending(stats, kathyList, Cash, holdItem, gifts, day, Energy);
      else
        System.out.print("");
-    
-          //method call to display Game-Over Screen
-      tool.readFile("SplashScreens.txt", "GameOver Splash Screen", "{");
+   
          
     
     boolean clear = true;
