@@ -118,7 +118,33 @@ Scene15
 Narrator: I'll explain the instructions to the game slowly so even you can understand it. Pay Attention!
 You'll be shown a menu with a list of options that will describe what they do. Type in and
 enter the corresiponding key to gain access to more options. Your mission is to earn money, learn skills, 
-to finally woo over the girl. If you ever need to view the game instructions again because 
+to finally woo over the girl. You have 100 energy at the start of the day. After doing tasks around
+town, your energy will decrease. Once your energy reaches 0, you'll 
+go back to your room and the next day will begin. If you ever need to view the game instructions again because 
 you thought none of this was important.
 
 endScene15
+
+Scene16 
+
+Narrator: You  decided to take Kathy out to the park on your first offical date. She begins to start asking you questions 
+about if you truly know who she is about.
+
+Kathy: Quiz Time! Wise Guy! What is my favorite food.
+
+ensScene16 
+
+Scene18
+
+Kathy: Follow up question! What is my favorite movie? 
+
+endScene18
+
+Scene21
+
+Narrator: Now you have decided to ask Kathy out to the amusement park. You've manage to win a couple of prizes for her
+and you are both enjoying the moon reflect off the ground. Until suddenly, she begins to ask more questions. 
+
+Kathy: Time for Round 2?! What is my blood type? 
+
+endScene21
